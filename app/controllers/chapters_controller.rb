@@ -20,8 +20,9 @@ class ChaptersController < ApplicationController
 
   # POST /chapters or /chapters.json
   def create
+    
     @chapter = Chapter.new(chapter_params)
-
+    @chapter.user_id = current_user.id
     respond_to do |format|
       if @chapter.save
         format.html { redirect_to chapter_url(@chapter), notice: 'Chapter was successfully created.' }
