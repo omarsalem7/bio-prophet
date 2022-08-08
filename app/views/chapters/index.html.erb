@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Chapters</h1>
+
+<div id="chapters">
+  <% @chapters.each do |chapter| %>
+    <%= render chapter %>
+    <p>
+      <%= link_to "Show this chapter", chapter %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New chapter", new_chapter_path %>
