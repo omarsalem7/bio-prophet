@@ -1,1 +1,1 @@
-json.array! @chapters, partial: "chapters/chapter", as: :chapter
+json.array! @chapters, partial: 'chapters/chapter', as: :chapter
