@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :set_chapter
-  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson, only: %i[show edit update destroy]
 
   # GET chapters/1/lessons
   def index
@@ -8,8 +8,7 @@ class LessonsController < ApplicationController
   end
 
   # GET chapters/1/lessons/1
-  def show
-  end
+  def show; end
 
   # GET chapters/1/lessons/new
   def new
@@ -17,8 +16,7 @@ class LessonsController < ApplicationController
   end
 
   # GET chapters/1/lessons/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST chapters/1/lessons
   def create
@@ -48,17 +46,18 @@ class LessonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_chapter
-      @chapter = Chapter.find(params[:chapter_id])
-    end
 
-    def set_lesson
-      @lesson = @chapter.lessons.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_chapter
+    @chapter = Chapter.find(params[:chapter_id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def lesson_params
-      params.require(:lesson).permit(:name, :content)
-    end
+  def set_lesson
+    @lesson = @chapter.lessons.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def lesson_params
+    params.require(:lesson).permit(:name, :content)
+  end
 end
