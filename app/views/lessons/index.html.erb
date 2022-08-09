@@ -13,7 +13,7 @@
       <p><%= lesson.content %></p>
       <p><%= link_to 'Show', [lesson.chapter, lesson] %></p>
       <p><%= link_to 'Edit', edit_chapter_lesson_path(lesson.chapter, lesson) %></p>
-      <p><%= button_to 'Destroy', [lesson.chapter, lesson], method: :delete, form: { data: { turbo_confirm: "هل أنت متأكد إنك تريد حذف هذا الجزء ؟" } }, method: :delete  %></p>
+      <p><%= button_to 'Destroy', [lesson.chapter, lesson], form: { data: { turbo_confirm: "هل أنت متأكد إنك تريد حذف هذا الجزء ؟" } }, method: :delete  %></p>
     </div>
   <% end %>
 </table>
