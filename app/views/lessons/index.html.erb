@@ -1,14 +1,21 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Lessons</h1>
-
-<div id="lessons">
+<h1>Listing lessons</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
   <% @lessons.each do |lesson| %>
-    <%= render lesson %>
-    <p>
-      <%= link_to "Show this lesson", lesson %>
-    </p>
+    <div>
+      <p><%= lesson.name %></p>
+      <p><%= lesson.content %></p>
+      <p><%= link_to 'Show', [lesson.chapter, lesson] %></p>
+      <p><%= link_to 'Edit', edit_chapter_lesson_path(lesson.chapter, lesson) %></p>
+      <p><%= button_to 'Destroy', [lesson.chapter, lesson], method: :delete, form: { data: { turbo_confirm: "هل أنت متأكد إنك تريد حذف هذا الجزء ؟" } }, method: :delete  %></p>
+    </div>
   <% end %>
-</div>
-
-<%= link_to "New lesson", new_lesson_path %>
+</table>
+<br />
+<%= link_to 'New Lesson', new_chapter_lesson_path(params[:chapter_id]) %>

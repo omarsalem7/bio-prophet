@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-<%= render @lesson %>
+<p>
+  <b>Name:</b>
+  <%= @lesson.name %>
+</p>
 
-<div>
-  <%= link_to "Edit this lesson", edit_lesson_path(@lesson) %> |
-  <%= link_to "Back to lessons", lessons_path %>
+<p>
+  <b>Content:</b>
+  <%= @lesson.content %>
+</p>
 
-  <%= button_to "Destroy this lesson", @lesson, method: :delete %>
-</div>
+
+<%= link_to 'Edit', edit_chapter_lesson_path(@lesson.chapter, @lesson) %> |
+<%= link_to 'Back', chapter_lessons_path(@lesson.chapter) %>

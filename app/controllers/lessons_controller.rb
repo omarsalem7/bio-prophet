@@ -1,69 +1,64 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: %i[show edit update destroy]
+  before_action :set_chapter
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
 
-  # GET /lessons or /lessons.json
+  # GET chapters/1/lessons
   def index
-    @lessons = Lesson.all
+    @lessons = @chapter.lessons
   end
 
-  # GET /lessons/1 or /lessons/1.json
-  def show; end
+  # GET chapters/1/lessons/1
+  def show
+  end
 
-  # GET /lessons/new
+  # GET chapters/1/lessons/new
   def new
-    @lesson = Lesson.new
+    @lesson = @chapter.lessons.build
   end
 
-  # GET /lessons/1/edit
-  def edit; end
+  # GET chapters/1/lessons/1/edit
+  def edit
+  end
 
-  # POST /lessons or /lessons.json
+  # POST chapters/1/lessons
   def create
-    @lesson = Lesson.new(lesson_params)
+    @lesson = @chapter.lessons.build(lesson_params)
 
-    respond_to do |format|
-      if @lesson.save
-        format.html { redirect_to lesson_url(@lesson), notice: 'Lesson was successfully created.' }
-        format.json { render :show, status: :created, location: @lesson }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
-      end
+    if @lesson.save
+      redirect_to([@lesson.chapter, @lesson], notice: 'Lesson was successfully created.')
+    else
+      render action: 'new'
     end
   end
 
-  # PATCH/PUT /lessons/1 or /lessons/1.json
+  # PUT chapters/1/lessons/1
   def update
-    respond_to do |format|
-      if @lesson.update(lesson_params)
-        format.html { redirect_to lesson_url(@lesson), notice: 'Lesson was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lesson }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @lesson.errors, status: :unprocessable_entity }
-      end
+    if @lesson.update(lesson_params)
+      redirect_to([@lesson.chapter, @lesson], notice: 'Lesson was successfully updated.')
+    else
+      render action: 'edit'
     end
   end
 
-  # DELETE /lessons/1 or /lessons/1.json
+  # DELETE chapters/1/lessons/1
   def destroy
     @lesson.destroy
 
-    respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to chapter_lessons_url(@chapter)
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_chapter
+      @chapter = Chapter.find(params[:chapter_id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_lesson
-    @lesson = Lesson.find(params[:id])
-  end
+    def set_lesson
+      @lesson = @chapter.lessons.find(params[:id])
+    end
 
-  # Only allow a list of trusted parameters through.
-  def lesson_params
-    params.require(:lesson).permit(:title, :content)
-  end
+    # Only allow a trusted parameter "white list" through.
+    def lesson_params
+      params.require(:lesson).permit(:name, :content)
+    end
 end
