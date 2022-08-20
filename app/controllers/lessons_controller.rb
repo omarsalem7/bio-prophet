@@ -23,7 +23,7 @@ class LessonsController < ApplicationController
     @lesson = @chapter.lessons.build(lesson_params)
 
     if @lesson.save
-      redirect_to([@lesson.chapter, @lesson], notice: 'Lesson was successfully created.')
+      redirect_to([@lesson.chapter, @lesson], notice: 'تم إضافه الدرس بنجاح')
     else
       render action: 'new'
     end
@@ -32,7 +32,7 @@ class LessonsController < ApplicationController
   # PUT chapters/1/lessons/1
   def update
     if @lesson.update(lesson_params)
-      redirect_to([@lesson.chapter, @lesson], notice: 'Lesson was successfully updated.')
+      redirect_to([@lesson.chapter, @lesson], notice: 'تم تعديل الدرس بنجاح')
     else
       render action: 'edit'
     end
@@ -42,7 +42,10 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
 
-    redirect_to chapter_lessons_url(@chapter)
+    # redirect_to chapter_lessons_url(@chapter)
+    respond_to do |format|
+      format.html { redirect_to chapter_lessons_url(@chapter), notice: 'تم حذف الدرس بنجاح' }
+    end
   end
 
   private

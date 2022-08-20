@@ -24,7 +24,7 @@ class ChaptersController < ApplicationController
     @chapter.user_id = current_user.id
     respond_to do |format|
       if @chapter.save
-        format.html { redirect_to chapter_url(@chapter), notice: 'Chapter was successfully created.' }
+        format.html { redirect_to chapter_url(@chapter), notice: 'تم إضافه الباب بنجاح' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -35,7 +35,7 @@ class ChaptersController < ApplicationController
   def update
     respond_to do |format|
       if @chapter.update(chapter_params)
-        format.html { redirect_to chapter_url(@chapter), notice: 'Chapter was successfully updated.' }
+        format.html { redirect_to chapter_url(@chapter), notice: 'تم تعديل الباب بنجاح' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -47,7 +47,7 @@ class ChaptersController < ApplicationController
     @chapter.destroy
 
     respond_to do |format|
-      format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
+      format.html { redirect_to chapters_url, notice: 'تم حذف الباب بنجاح' }
     end
   end
 
