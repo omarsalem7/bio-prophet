@@ -6,7 +6,7 @@ class LessonsController < ApplicationController
   def index
     @page = (params[:page] || 0).to_i
     @lessons = @chapter.lessons.offset(PAGE_LIMIT * @page).limit(PAGE_LIMIT)
-    @num_of_lessons=@chapter.lessons.count
+    @num_of_lessons = @chapter.lessons.count
   end
 
   # GET chapters/1/lessons/1
