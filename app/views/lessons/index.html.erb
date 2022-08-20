@@ -1,0 +1,19 @@
+<h1>الدروس</h1>
+<% @lessons.each do |lesson| %>
+  <div>
+    <p><%= lesson.name %></p>
+    <p><%= link_to 'Show', [lesson.chapter, lesson] %></p>
+    <p><%= link_to 'Edit', edit_chapter_lesson_path(lesson.chapter, lesson) %></p>
+    <p><%= button_to 'Destroy', chapter_lesson_path(lesson.chapter,lesson), class: "omar", form: { data: { turbo_confirm: "هل أنت متأكد إنك تريد حذف هذا الجزء ؟" } }, method: :delete  %></p>
+  </div>
+<% end %>
+<br />
+<%= link_to 'New Lesson', new_chapter_lesson_path(params[:chapter_id]) %>
+<ul class="d-flex justify-content-between">
+  <li class="previous <%= @page == 0 ? 'disabled' : '' %>">
+    <%= link_to_if @page > 0, " << السابق  ", chapter_lessons_path(page: @page - 1) %>
+  </li>
+  <li class="next">
+    <%= link_to_if @page < @num_of_lessons/2 ,"التالي >>", chapter_lessons_path(page: @page + 1) %>
+  </li>
+</ul>

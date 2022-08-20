@@ -1,14 +1,17 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Chapters</h1>
-
 <div id="chapters">
   <% @chapters.each do |chapter| %>
-    <%= render chapter %>
-    <p>
-      <%= link_to "Show this chapter", chapter %>
-    </p>
+    <%= link_to chapter do %>
+      <div class='border border-success my-3 p-3'>
+        <%= render chapter %>
+        <div>
+          <%= link_to "Edit this chapter", edit_chapter_path(chapter) %> |
+          <%= button_to "Destroy this chapter", chapter, method: :delete, form: { data: { turbo_confirm: "هل أنت متأكد إنك تريد حذف هذا الجزء ؟" } }, method: :delete %>
+          <button id='omar'>omar</button>
+        </div>
+      </div>
+    <% end%>
   <% end %>
 </div>
-
 <%= link_to "New chapter", new_chapter_path %>
+<%= stylesheet_link_tag "application", media: "all" %>
