@@ -1,10 +1,12 @@
 class LessonsController < ApplicationController
   before_action :set_chapter
   before_action :set_lesson, only: %i[show edit update destroy]
-
+  PAGE_LIMIT = 2
   # GET chapters/1/lessons
   def index
-    @lessons = @chapter.lessons
+    @page = (params[:page] || 0).to_i
+    @lessons = @chapter.lessons.offset(PAGE_LIMIT * @page).limit(PAGE_LIMIT)
+    @num_of_lessons=@chapter.lessons.count
   end
 
   # GET chapters/1/lessons/1
