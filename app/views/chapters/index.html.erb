@@ -1,17 +1,13 @@
-<h1>Chapters</h1>
+<h1>دورات</h1>
 <div id="chapters">
   <% @chapters.each do |chapter| %>
-    <%= link_to chapter do %>
-      <div class='border border-success my-3 p-3'>
-        <%= render chapter %>
-        <div>
-          <%= link_to "Edit this chapter", edit_chapter_path(chapter) %> |
-          <%= button_to "Destroy this chapter", chapter, method: :delete, form: { data: { turbo_confirm: "هل أنت متأكد إنك تريد حذف هذا الجزء ؟" } }, method: :delete %>
-          <button id='omar'>omar</button>
-        </div>
+    <div class='border border-success my-3 p-3'>
+      <%= render chapter %>
+      <div>
+        <%= button_to "حذف هذه الدورة", chapter, method: :delete, form: { data: { turbo_confirm: "هل أنت متأكد إنك تريد حذف هذا الجزء ؟" } }, method: :delete %>
+        <%= link_to "تعديل هذا الدورة", edit_chapter_path(chapter) %> | <%= link_to "الدروس", chapter_lessons_path(chapter) %>
       </div>
-    <% end%>
-  <% end %>
+    </div>
+  <% end%>
 </div>
-<%= link_to "New chapter", new_chapter_path %>
-<%= stylesheet_link_tag "application", media: "all" %>
+<%= link_to " إضافة دورة جديدة", new_chapter_path %>

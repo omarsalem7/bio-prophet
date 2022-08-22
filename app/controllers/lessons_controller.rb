@@ -44,7 +44,6 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
 
-    # redirect_to chapter_lessons_url(@chapter)
     respond_to do |format|
       format.html { redirect_to chapter_lessons_url(@chapter), notice: 'تم حذف الدرس بنجاح' }
     end

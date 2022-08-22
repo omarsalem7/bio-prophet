@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  font-family: 'Tajawal', sans-serif;
+}
+
 html {
   direction: rtl;
   text-align: right;
