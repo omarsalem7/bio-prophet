@@ -1,10 +1,12 @@
-<p>
-  <b>Name:</b>
-  <%= @lesson.name %>
-</p>
-<p>
-  <b>Content:</b>
-  <%= @lesson.content %>
-</p>
-<%= link_to 'Edit', edit_chapter_lesson_path(@lesson.chapter, @lesson) %> |
-<%= link_to 'Back', chapter_lessons_path(@lesson.chapter) %>
+<div>
+  <p>
+    <b>العنوان</b>
+    <%= @lesson.name %>
+  </p>
+  <p>
+    <b>المحتوي</b>
+    <%= @lesson.content %>
+  </p>
+  <%= link_to 'Edit', edit_chapter_lesson_path(@lesson.chapter, @lesson) %> |
+  <%= link_to 'Back', chapter_lessons_path(@lesson.chapter) %>
+</div>

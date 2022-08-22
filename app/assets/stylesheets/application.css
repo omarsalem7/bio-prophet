@@ -17,3 +17,7 @@ html {
   direction: rtl;
   text-align: right;
 }
+
+li {
+  margin: 0 20px;
+}
